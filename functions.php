@@ -156,3 +156,65 @@ function getRelatedPost() {
         return ob_get_clean();
     }
 }
+
+
+function mts_comments( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment; ?>
+    <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+        <?php
+        switch( $comment->comment_type ) :
+            case 'pingback':
+            case 'trackback': ?>
+                <div id="comment-<?php comment_ID(); ?>">
+                    <div class="comment-author vcard">
+                        Pingback: <?php comment_author_link(); ?>
+                        
+                            <span class="ago"><?php comment_date( get_option( 'date_format' ) ); ?></span>
+                        
+                        <span class="comment-meta">
+                            <?php edit_comment_link( __( '( Sửa )', 'bentheme' ), '  ', '' ) ?>
+                        </span>
+                    </div>
+                    <?php if ( $comment->comment_approved == '0' ) : ?>
+                        <em><?php _e( 'Bình luận của bạn đang chờ phê duyệt.', 'bentheme' ) ?></em>
+                        <br />
+                    <?php endif; ?>
+                </div>
+            <?php
+                break;
+
+            default: ?>
+                <div id="comment-<?php comment_ID(); ?>" class="comment__flex" itemscope itemtype="http://schema.org/UserComments">
+                    <div class="comment-author vcard">
+                        <?php echo get_avatar( $comment->comment_author_email, 75 ); ?>
+                        
+                    </div>
+                    <?php if ( $comment->comment_approved == '0' ) : ?>
+                        <em><?php _e( 'Bình luận của bạn đang chờ phê duyệt.', 'bentheme' ) ?></em>
+                        <br />
+                    <?php endif; ?>
+                    <div class="commentmetadata">
+                        <div class="comment_aname">
+                            <?php printf( '<span class="fn" itemprop="creator" itemscope itemtype="http://schema.org/Person"><span itemprop="name">%s</span></span>', get_comment_author_link() ) ?>
+                                
+                            <div class="comment_audate">
+                                <span class="ago"><?php comment_date( get_option( 'date_format' ) ); ?></span>
+                                
+                                <span class="comment-meta">
+                                    <?php edit_comment_link( __( '( Sửa )', 'bentheme' ), '  ', '' ) ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="commenttext" itemprop="commentText">
+                            <?php comment_text() ?>
+                        </div>
+                        <div class="reply">
+                            <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] )) ) ?>
+                        </div>
+                    </div>
+                </div>
+            <?php
+                break;
+            endswitch; ?>
+    <!-- WP adds </li> -->
+<?php }

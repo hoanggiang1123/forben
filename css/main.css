@@ -830,6 +830,8 @@ footer {
     display: flex;
     flex-direction: column;
     background: var(--gray-dark);
+    position: relative;
+    z-index: -1;
 }
 footer.footer__single {
     margin-top: -60px;
@@ -987,6 +989,107 @@ h2.screen-reader-text {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--red);
+}
+.related__post {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+li.comment .comment__flex {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0px
+}
+.comment-author.vcard {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.comment-author.vcard img {
+    width: 100%;
+    border-radius: 50%;
+}
+.commentmetadata {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+}
+.fn span {
+    color: var(--red);
+    font-weight: 500;
+    font-size: 1.3rem;    
+}
+.comment_aname {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+
+}
+.comment_audate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.comment_audate .ago {
+    font-size: 0.8rem;
+    font-style: italic;
+}
+.commenttext p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #000;
+}
+.children {
+    margin-left: 30px;
+}
+#comments h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+}
+#respond {
+    width: 100%;
+}
+#respond h4 {
+    font-size: 1.3rem;
+    color: #000;
+    font-weight: 500;
+    padding: 10px 0;
+}
+.logged-in-as a {
+    padding-bottom: 10px;
+    display: inline-block;
+}
+.comment-form-comment textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid var(--red);
+    padding: 10px;
+}
+.form-submit .submit {
+    background: transparent;
+    border: none;
+    border: 1px solid var(--red);
+    padding: 10px;
+    color: #000;
+    font-weight: 500;
+}
+.form-submit .submit:hover {
+    background: var(--red);
+    color: #FFF;
+}
+.comment-form-author input,.comment-form-email input, .comment-form-url input{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--red);
+}
+#cancel-comment-reply-link {
+    padding: 10px 0;
+    font-size: 1.2rem;
+    display: block;
 }
 @media (min-width:620px) {
     .realted__post-wrap {

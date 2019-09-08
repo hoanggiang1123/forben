@@ -32,6 +32,7 @@
                     </div>
                 </div>
                 <?php echo getRelatedPost();?>
+                <?php comments_template( '', true ); ?>
             </div>
             
         </div>
