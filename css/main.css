@@ -1092,6 +1092,27 @@ li.comment .comment__flex {
     font-size: 1.2rem;
     display: block;
 }
+.notfoundpages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 200px 0;
+    background: var(--red);
+    flex-direction: column;
+}
+.notfoundpages h1 {
+    color: #FFF;
+    font-weight: 700;
+    font-size: 2rem;
+    display: block;
+}
+.notfoundpages a {
+    display: block;
+    padding: 20px;
+    color: #FFF;
+    font-weight: 500;
+    text-decoration: underline;
+}
 @media (min-width:620px) {
     .realted__post-wrap {
         display: grid;

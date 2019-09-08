@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <link rel="icon" href="<?php echo BEN_THEME_URL.'/static/logo.png';?>">
 	<?php wp_head(); ?>
 </head>
-<body>
+<body style="overflow-x: hidden;">
     <?php if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):?>
     <header>
         <div class="container">
