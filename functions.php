@@ -101,3 +101,58 @@ function ben_pagination($pages = '', $range = 3) {
     ) );
 
 }
+
+function archiveTitle() {
+
+    if(is_category()){  
+        $title = '<h1 class="postsby">'.single_cat_title('',false).'</h1>';
+    }
+    if(is_tag()){
+         $title = '<h1 class="postsby">'.single_tag_title('',false).'</h1>';
+    }
+    if(is_search()){
+        $title = '<h1 class="postsby">'.get_search_query('',false).'</h1>';
+    }
+    if(is_date()){
+        $title = '<h1 class="postsby">'.single_month_title('',false).'</h1>';
+    }
+    return $title;
+}
+
+function getRelatedPost() {
+    $post_id = get_the_ID();
+    $categories = get_the_category($post_id);
+
+    if(!empty($categories)) {
+        $category_ids = [];
+        foreach($categories as $cat) {
+            $category_ids[] = $cat->term_id;
+        }
+
+        $args = ['posts_per_page'=> 6,'post_type'=>'post','post_status'=>'publish','post__not_in'=>array($post_id), 'category__in' => $category_ids,'category__in' => $category_ids,'ignore_sticky_posts' => 1,'orderby' => 'rand'];
+        $related = new wp_query($args);
+        ob_start();
+        if($related ->have_posts()):?>
+            <div class="related__post">
+                <div class="related__header">
+                    <h4>Bài Viết Liên Quan</h4>
+                </div>
+                <div class="realted__post-wrap">
+                    <?php while($related->have_posts()) : $related->the_post();
+                         $img = ben_getImg($related->post->ID, $related->post->post_content,300,186,'-ben-realted-thumb-');
+                    ?>
+                    <div class="related__item">
+                        <div class="related__img">
+                            <a href="<?php the_permalink();?>"><img src="<?php echo $img;?>" alt="<?php the_title();?>"></a>
+                        </div>
+                        <div class="related__title">
+                            <h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+                        </div>
+                    </div>
+                    <?php endwhile; wp_reset_postdata();?>
+                </div>
+            </div>
+        <?php endif;
+        return ob_get_clean();
+    }
+}

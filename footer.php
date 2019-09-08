@@ -1,5 +1,5 @@
-    <footer>
-        <div class="footer-1 container">
+    <footer class="footer__single">
+        <div class="footer-1 container footer-1-single">
             <div class="footer__info">
                <img src="https://cdn.shortpixel.ai/client/q_glossy,ret_img/https://www.gotchseo.com/wp-content/uploads/2018/02/logo.png" alt="">
                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, nihil natus veritatis adipisci ipsum pariatur excepturi beatae animi sapiente sunt.</p>

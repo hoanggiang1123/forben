@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="container">
             <div class="header_wrap">
                 <div class="site-branding">
-                    <a href="javascript:;">
+                    <a href="<?php echo home_url('/');?>">
                         <img src="https://cdn.shortpixel.ai/client/q_glossy,ret_img/https://www.gotchseo.com/wp-content/uploads/2018/02/logo.png" alt="">
                     </a>
                 </div>
@@ -50,8 +50,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         <div class="main__search">
             <div class="container">
-                <form action="/" method="GET">
-                    <input type="text" placeholder="Tìm Kiếm..." value="" name="s">
+                <form action="<?php echo home_url('/');?>" method="GET">
+                    <input type="text" placeholder="Tìm Kiếm..." value="<?php echo get_search_query() ?>" name="s" id="s">
                     <label for="submit">
                         <input type="submit" name="submit">
                         <i class="fas fa-search"></i>
