@@ -14,10 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="icon" href="<?php echo BEN_THEME_URL.'/static/logo.png';?>">
 	<?php wp_head(); ?>
 </head>
 <body>
+    <?php if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):?>
     <header>
         <div class="container">
             <div class="header_wrap">
@@ -60,3 +62,4 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
 
     </header>
+    <?php endif;?>

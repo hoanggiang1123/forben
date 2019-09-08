@@ -1,5 +1,5 @@
 <?php get_header();?>
-<?php echo showSlider();?>
+<?php echo showSlider(get_queried_object_id(),'category');?>
 <div class="header-gradient">
     <div class="container">
         <?php

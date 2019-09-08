@@ -48,19 +48,44 @@ function ben_register_sidebars() {
 add_action('wp_enqueue_scripts','ben_add_css',999);
 function ben_add_css() {
     wp_enqueue_style('ben_style',get_stylesheet_uri());
-    wp_enqueue_style('google-font','//fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
-    wp_enqueue_style('font-awsome','//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css');
-    wp_enqueue_style('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
-    wp_enqueue_style('main_css',BEN_THEME_URL.'/css/main.css');
+
+    if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):
+        wp_enqueue_style('google-font','//fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+        wp_enqueue_style('font-awsome','//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css');
+        wp_enqueue_style('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
+        wp_enqueue_style('main_css',BEN_THEME_URL.'/css/main.css');
+    else:
+        // Vua Casino Css
+        if(is_page_template('vuacasino.php')):
+            wp_enqueue_style('google-font',BEN_THEME_URL.'/css/indexCss.css');
+        else:
+            wp_enqueue_style('google-font',BEN_THEME_URL.'/css/indexCss1.css');
+        endif;
+        
+        wp_enqueue_style('bootstrap-css','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+        wp_enqueue_style('slick-css',BEN_THEME_URL.'/css/slick.css');
+        wp_enqueue_style('slick-theme',BEN_THEME_URL.'/css/slick-theme.css');
+    endif;
+
 }
 
 
 add_action('wp_enqueue_scripts','ben_add_scripts');
 function ben_add_scripts() {
-    wp_enqueue_script('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js',[],'1.0.0', false);
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):
+        wp_enqueue_script('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js',[],'1.0.0', false);
+        if (is_singular() && comments_open() && get_option('thread_comments')):
+            wp_enqueue_script( 'comment-reply' );
+        endif;
+    else:
+        // Vua Casino Js
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('popper','//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',[],'1.0.0', false);
+        wp_enqueue_script('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',[],'1.0.0', false);
+        wp_enqueue_script('slick','//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js',[],'1.0.0', false);
+        wp_enqueue_script('slickslick',BEN_THEME_URL.'/js/slick.js',[],'1.0.0', false);
+
+    endif;
 }
 
 
@@ -235,3 +260,53 @@ function showSlider($id,$type="post") {
         return '<div class="slider">'.do_shortcode($shortcode).'</div>';
     }
 }
+
+
+function getKhuyenMai($atts) {
+    $cat = isset($atts['cat'])? $atts['cat']: 10;
+    $number = isset($atts['number'])? $atts['number']: 0;
+
+    $args = array('posts_per_page' => $number, 'post_type'=>'post','post_status'=>'publish','category__in'=>array($cat));
+    $km = new wp_query($args);
+    ob_start();
+    if($km->have_posts()) while($km->have_posts()) : $km->the_post();
+    $img = ben_getImg($km->post->ID, $km->post->post_content,254,146,'-ben-km-thumb-'); 
+    ?>
+        <div class="row post" data-aos="fade-up">
+            <img class="col-12 col-sm-12 col-md-4 col-xl-4 col-lg-4" src="<?php echo $img;?>" alt="<?php the_title();?>">
+            <div class="col-12 col-sm-12 col-md-8 col-xl-8 col-lg-8">
+                <h5><?php the_title();?></h5>
+                <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>"> XEM THÊM</a></p>
+            </div>
+        </div>
+    <?php endwhile; wp_reset_postdata();
+    return ob_get_clean();
+}
+
+add_shortcode('khuyen-mai','getKhuyenMai');
+
+function getLastestNew($atts) {
+    $number = isset($atts['number'])? $atts['number']:3;
+    $args = array('posts_per_page' => $number, 'post_type'=>'post','post_status'=>'publish','orderby'=>'ID','order'=>'DESC');
+
+    $km = new wp_query($args);
+    ob_start();
+    if($km->have_posts()) while($km->have_posts()) : $km->the_post();
+    $img = ben_getImg($km->post->ID, $km->post->post_content,254,146,'-ben-km-thumb-'); 
+    ?>
+        <div class=" post">
+			<div class="rows">
+				<div class="imgPost" data-aos="fade-right">
+					<img src="<?php echo $img;?>" alt="<?php the_title();?>">
+				</div>
+				<div class="content" data-aos="fade-left">
+					<h5><?php the_title();?></h5>
+                    <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>"> XEM THÊM</a></p>
+				</div>
+			</div>
+        </div>
+    <?php endwhile; wp_reset_postdata();
+    return ob_get_clean();
+}
+
+add_shortcode('lastest-new','getLastestNew');

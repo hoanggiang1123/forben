@@ -1,3 +1,4 @@
+    <?php if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):?>
     <footer class="footer__single">
         <div class="footer-1 container footer-1-single">
             <div class="footer__info">
@@ -78,5 +79,22 @@
         }
         vuacasino.init();
     </script>
+    <?php endif;?>
+    <?php if(is_page_template('vuacasino.php')):?>
+    <script>
+        jQuery(document).ready(function($){
+        $('.mobileImage').slick({
+            
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            cssEase: 'linear'
+            });
+        })
+	</script>
+    <?php endif;?>
 </body>
 </html>
