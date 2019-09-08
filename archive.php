@@ -1,5 +1,5 @@
 <?php get_header();?>
-
+<?php echo showSlider();?>
 <div class="header-gradient">
     <div class="container">
         <?php

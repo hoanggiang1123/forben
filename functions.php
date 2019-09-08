@@ -224,3 +224,14 @@ function mts_comments( $comment, $args, $depth ) {
             endswitch; ?>
     <!-- WP adds </li> -->
 <?php }
+
+function showSlider($id,$type="post") {
+    if($type == 'post') {
+        $shortcode = get_post_meta($id,'slider_shortcode_fields',true); 
+    } else {
+        $shortcode = get_term_meta($id,'category_slider_shortcode',true);
+    }
+    if($shortcode != '') {
+        return '<div class="slider">'.do_shortcode($shortcode).'</div>';
+    }
+}

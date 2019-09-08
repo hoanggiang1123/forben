@@ -1,4 +1,5 @@
 <?php get_header();?>
+<?php echo showSlider(get_the_ID(),'post');?>
 <?php if(have_posts()) while(have_posts()): the_post();?>
 <div class="header-gradient">
     <div class="container">
@@ -31,7 +32,12 @@
                         </div>
                     </div>
                 </div>
-                <?php echo getRelatedPost();?>
+                <?php 
+                    $show = get_post_meta(get_the_ID(),'related_post_fields',true);
+                    if($show != '' && $show === 'yes') {
+                        echo getRelatedPost();
+                    }
+                ?>
                 <?php comments_template( '', true ); ?>
             </div>
             

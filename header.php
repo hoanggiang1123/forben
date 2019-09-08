@@ -33,12 +33,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="site-nav">
                     <nav class="navigation">
                         <div class="main-menu-wrap">
-                            <ul>
-                                <li><a href="javascript:;">About</a></li>
-                                <li><a href="javascript:;">Blog</a></li>
-                                <li><a href="javascript:;">Traning</a></li>
-                                <li><a href="javascript:;">Contact</a></li>
-                            </ul>
+                            <?php 
+                                $args = array('theme_location'=>'primary-menu','container'=>false);
+                                wp_nav_menu($args);
+                            ?>
                         </div>
                     </nav>
                 </div>

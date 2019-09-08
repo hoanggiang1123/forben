@@ -888,6 +888,7 @@ footer.footer__single {
     font-weight: 500;
     max-width: 940px;
     text-align: center;
+    margin: 0 auto;
 }
 .main__blog {
     margin: 0 auto;
