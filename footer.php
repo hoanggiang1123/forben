@@ -13,11 +13,11 @@
                 </ul>
             </div>
             <div class="footer__social">
-                <a class="fb" href="javascript:;"><img src="./img/fb.png" alt=""></a>
-                <a class="tw" href="javascript:;"><img src="./img/linke.png" alt=""></a>
-                <a class="pin" href="javascript:;"><img src="./img/pin.png" alt=""></a>
-                <a class="linke" href="javascript:;"><img src="./img/tw.png" alt=""></a>
-                <a class="yt" href="javascript:;"><img src="./img/yt.png" alt=""></a>
+                <a class="fb" href="javascript:;"><img src="<?php echo BEN_THEME_URL.'/img/fb.png';?>" alt="fb"></a>
+                <a class="tw" href="javascript:;"><img src="<?php echo BEN_THEME_URL.'/img/linke.png';?>" alt="tw"></a>
+                <a class="pin" href="javascript:;"><img src="<?php echo BEN_THEME_URL.'/img/pin.png';?>" alt="pin"></a>
+                <a class="linke" href="javascript:;"><img src="<?php echo BEN_THEME_URL.'/img/tw.png';?>" alt="linke"></a>
+                <a class="yt" href="javascript:;"><img src="<?php echo BEN_THEME_URL.'/img/yt.png';?>" alt="yt"></a>
             </div>
         </div>
         <div class="footer-cp">

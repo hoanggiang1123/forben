@@ -1880,6 +1880,29 @@ footer.footer__single {
     line-height: 1.75;
     margin-bottom: 15px;
 }
+
+h2.screen-reader-text {
+    display: none;
+}
+.nav-links .page-numbers {
+    display: inline-block;
+    padding: 10px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.nav-links .page-numbers:not(.dots) {
+    border: 1px solid var(--red);
+}
+.nav-links .page-numbers:not(.dots):hover, .nav-links .page-numbers.current {
+    background: var(--red);
+    color: #FFF;
+}
+#breadcrumbs span, #breadcrumbs a {
+    color: #FFF;
+    font-weight: 500;
+}
+
 @media (min-width:768px) {
     .main__blog {
         width: 70%;

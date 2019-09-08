@@ -26,7 +26,7 @@ function ben_register_sidebars() {
     
     // Default sidebar
     register_sidebar( array(
-        'name' => __('Sidebar', 'bentheme'),
+        'name' => __('sidebar', 'bentheme'),
         'description'   => __( 'Default sidebar.', 'bentheme' ),
         'id' => 'sidebar',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -63,3 +63,41 @@ function ben_add_scripts() {
 	}
 }
 
+
+require_once BEN_THEME_PATH.'/inc/support.php';
+global $Support;
+$Support = new Ben_Theme_Support;
+
+function ben_getImg($postID, $postcontent, $width, $height, $suffixes){
+    global $Support;
+    $feature_img = wp_get_attachment_url(get_post_thumbnail_id($postID));
+
+    if($feature_img == false){
+        $imgUrl1 = $Support->get_img_url($postcontent);
+
+        if($imgUrl1 == false){
+            return false;
+        } else {
+           $imgUrl = $Support->get_new_img_url($imgUrl1,$width,$height,$suffixes);
+        }
+
+    } else {
+        $imgUrl = $Support->get_new_img_url($feature_img,$width,$height,$suffixes);
+    }
+
+    return $imgUrl;
+}
+
+function getPostDate() {
+    return get_the_date('d').' '.'<span>'.get_the_date('M').'</span>';
+}
+
+function ben_pagination($pages = '', $range = 3) {
+       
+    the_posts_pagination( array(
+        'mid_size' => 3,
+        'prev_text' => __( 'Trang Trước', 'bentheme' ),
+        'next_text' => __( 'Trang Cuối', 'bentheme' ),
+    ) );
+
+}
