@@ -68,6 +68,12 @@ require_once BEN_THEME_PATH.'/inc/support.php';
 global $Support;
 $Support = new Ben_Theme_Support;
 
+require_once BEN_THEME_PATH.'/inc/metabox.php';
+new Ben_Related_Post_And_Slider_Opt;
+
+require_once BEN_THEME_PATH.'/inc/tax-meta.php';
+new Category_Meta;
+
 function ben_getImg($postID, $postcontent, $width, $height, $suffixes){
     global $Support;
     $feature_img = wp_get_attachment_url(get_post_thumbnail_id($postID));
