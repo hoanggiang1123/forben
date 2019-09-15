@@ -52,7 +52,7 @@ function ben_add_css() {
     if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):
         wp_enqueue_style('google-font','//fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
         wp_enqueue_style('font-awsome','//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css');
-        wp_enqueue_style('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
+        //wp_enqueue_style('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
         wp_enqueue_style('main_css',BEN_THEME_URL.'/css/main.css');
     else:
         // Vua Casino Css
@@ -73,7 +73,7 @@ function ben_add_css() {
 add_action('wp_enqueue_scripts','ben_add_scripts');
 function ben_add_scripts() {
     if(!is_page_template('vuacasino.php') && !is_page_template('vuacasino1.php')):
-        wp_enqueue_script('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js',[],'1.0.0', false);
+        //wp_enqueue_script('swiper','//cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js',[],'1.0.0', false);
         if (is_singular() && comments_open() && get_option('thread_comments')):
             wp_enqueue_script( 'comment-reply' );
         endif;
@@ -87,7 +87,17 @@ function ben_add_scripts() {
 
     endif;
 }
-
+add_filter( 'walker_nav_menu_start_el', 'add_arrow',10,4);
+function add_arrow( $output, $item, $depth, $args ){
+ 
+//Only add class to 'top level' items on the 'primary' menu.
+if('primary-menu' == $args->theme_location && $depth === 0 ){
+    if (in_array("menu-item-has-children", $item->classes)) {
+        $output .='<i class="fas fa-angle-down"></i>';
+    }
+}
+    return $output;
+}
 
 require_once BEN_THEME_PATH.'/inc/support.php';
 global $Support;
@@ -276,7 +286,7 @@ function getKhuyenMai($atts) {
             <img class="col-12 col-sm-12 col-md-4 col-xl-4 col-lg-4" src="<?php echo $img;?>" alt="<?php the_title();?>">
             <div class="col-12 col-sm-12 col-md-8 col-xl-8 col-lg-8">
                 <h5><?php the_title();?></h5>
-                <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>"> XEM THÊM</a></p>
+                <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>" rel="nofollow"> XEM THÊM</a></p>
             </div>
         </div>
     <?php endwhile; wp_reset_postdata();
@@ -301,7 +311,7 @@ function getLastestNew($atts) {
 				</div>
 				<div class="content" data-aos="fade-left">
 					<h5><?php the_title();?></h5>
-                    <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>"> XEM THÊM</a></p>
+                    <p> <?php echo mb_substr(get_the_excerpt(),0,200).'...';?><a href="<?php the_permalink();?>" rel="nofollow"> XEM THÊM</a></p>
 				</div>
 			</div>
         </div>

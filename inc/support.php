@@ -240,8 +240,19 @@ class Ben_Theme_Support{
 		$currentName = $currentName[0];
 	
 		//Tạo tên mới cho hình ảnh dựa trên tên cũ
-		$tmpFileName = explode('.', $currentName);
-		$newFileName = $tmpFileName[0] . $suffixes . '.' . $tmpFileName[1];
+		if(strpos($currentName,'.jpg')) {
+			$tmpFileName = explode('.jpg', $currentName);
+			$newFileName = $tmpFileName[0] . $suffixes . '.jpg';
+		} else if(strpos($currentName,'.png')){
+			$tmpFileName = explode('.png', $currentName);
+			$newFileName = $tmpFileName[0] . $suffixes . '.png';
+		} else if(strpos($currentName,'.gif')) {
+			$tmpFileName = explode('.gif', $currentName);
+			$newFileName = $tmpFileName[0] . $suffixes . '.gif';
+		} else {
+			$newFileName = $currentName;
+		}
+		
 	
 		//Chuyển từ đường dẫn URL sang PATH
 		$tmp 	= explode('/wp-content/', $imgUrl);

@@ -8,13 +8,13 @@
     </div>
 </div>
 <div class="main__content main__content-single">
-    <div class="container">
+    <div class="container float">
         
         <div class="main__wrapper">
             <div class="main__brc">
                 <?php
                     if(function_exists('yoast_breadcrumb')) { 
-                        yoast_breadcrumb( '<p id="breadcrumbs"><span> Bạn Đang Ở: </span>','</p>' );
+                        yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
                     }
                 ?>
             </div>

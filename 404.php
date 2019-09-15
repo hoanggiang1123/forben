@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="main__content main__content-single">
-    <div class="container">
+    <div class="container float">
        <div class="notfoundpages">
             <h1>Không Tìm Thấy Trang.</h1>
             <a href="<?php echo home_url('/');?>"> Về Trang Chủ</a>

@@ -32,12 +32,6 @@
                         </div>
                     </div>
                 </div>
-                <?php 
-                    $show = get_post_meta(get_the_ID(),'related_post_fields',true);
-                    if($show != '' && $show === 'yes') {
-                        echo getRelatedPost();
-                    }
-                ?>
                 <?php comments_template( '', true ); ?>
             </div>
             
